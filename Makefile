@@ -20,5 +20,8 @@ install-xray-daemon-mac:
 run-xray-daemon-mac:
 	./xray_daemon/xray_mac -o -n eu-west-1
 
-unit-test:
+local-test:
 	pytest
+	mypy
+	pydocstyle
+	flake8

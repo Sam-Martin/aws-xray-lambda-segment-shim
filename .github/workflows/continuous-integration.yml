@@ -29,9 +29,6 @@ jobs:
       - name: Lint with pydocstyle
         run: |
           pydocstyle
-      - name: Test with doctest
-        run: |
-          make doctest
   unit-and-integration-testing:
     runs-on: ubuntu-latest
     strategy:

@@ -1,8 +1,9 @@
 import os
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Dict, Optional
 
 import jmespath
 from aws_xray_sdk.core.context import Context
+from aws_xray_sdk.core.models.segment import Segment
 from aws_xray_sdk.core.models.trace_header import TraceHeader
 from aws_xray_sdk.core.recorder import AWSXRayRecorder
 
@@ -15,6 +16,8 @@ else:
 
 
 class SQSTriggeredXrayRecorder(AWSXRayRecorder):
+    """Provides setup defaults to allow trace continuation from SQS queues."""
+
     def __init__(
         self,
         record: SQSMessage,
@@ -48,7 +51,7 @@ class SQSTriggeredXrayRecorder(AWSXRayRecorder):
             "region": self.region,
         }
 
-    def _setup_sqs_triggered_segment(self):
+    def _setup_sqs_triggered_segment(self) -> None:
         # Setup the base segment
         segment = super().begin_segment(
             name=self.lambda_arn,
@@ -64,12 +67,38 @@ class SQSTriggeredXrayRecorder(AWSXRayRecorder):
             sampled=self.sqs_trace_header.sampled,
         )
 
-    def _setup_sqs_triggered_xray_environment(self):
+    def _setup_sqs_triggered_xray_environment(self) -> None:
         # Ensure boto3 and other patched libraries get instrumented with the correct trace id.
         os.environ["_X_AMZN_TRACE_ID"] = self.trace_header.to_header_str()
 
-    def begin_segment(self, name, traceid, parent_id, sampling):
+    def begin_segment(
+        self,
+        name: Optional[str],
+        traceid: Optional[str],
+        parent_id: Optional[str],
+        sampling: Optional[bool],
+    ) -> Segment:
+        """Overridden to avoid confusion as the segment is created in __init__.
+
+        Args:
+            name: Name of the segment to create
+            traceid: ID of the trace to create a segment under
+            parent_id: ID of the parent segment
+            sampling: Whether or not this segment has been selected for sampling
+
+        Raises:
+            ImmutableSegmentError: Default as this method is not enabled
+        """
         raise ImmutableSegmentError()
 
-    def in_segment(self, name, **segment_kwargs):
+    def in_segment(self, name: str, **segment_kwargs: Dict[str, Any]) -> None:
+        """Overridden to avoid confusion as the segment is created in __init__.
+
+        Args:
+            name: Name of the segment to create
+            segment_kwargs: The same keyword args as begin_segment
+
+        Raises:
+            ImmutableSegmentError: Default as this method is not enabled
+        """
         raise ImmutableSegmentError()
