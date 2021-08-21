@@ -1,9 +1,9 @@
 aws-xray-sqs-lambda-segment-shim
 =====================================
 
-|shield1| |shield2|
+`|shield1| <https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/actions/workflows/continuous-integration.yml?query=branch%3Amain+>`__ `|shield2| <https://pypi.org/project/aws-xray-sqs-lambda-segment-shim/>`__
 
-.. |shield1|  image:: https://img.shields.io/github/checks-status/sam-martin/aws-xray-sqs-lambda-segment-shim/main?style=flat-square   :alt: GitHub branch checks state
+.. |shield1|  .. image:: https://img.shields.io/github/workflow/status/sam-martin/aws-xray-sqs-lambda-segment-shim/Linting%20&%20Testing?style=flat-square   :alt: GitHub Workflow Status
 
 .. |shield2|  image:: https://img.shields.io/pypi/v/aws-xray-sqs-lambda-segment-shim?style=flat-square   :alt: PyPI
 
