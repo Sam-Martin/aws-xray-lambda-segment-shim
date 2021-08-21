@@ -40,3 +40,21 @@ Usage
 
 ``SQSTriggeredXrayRecorder`` is a child class of ``aws_xray_sdk.AWSXRayRecorder`` so you can use all the methods you would expect
 from following the `aws-xray-sdk documentation <https://github.com/aws/aws-xray-sdk-python/>`__.
+
+
+Caveats
+----------
+
+This approach causes all subsegments created with it to appear only in the trace that was passed in by SQS.
+There will still be a separate Lambda trace that will not contain these subsegments and will not show as
+being triggered by SQS.
+
+This approach is useful if you are using SQS as an intermediary for a process you're already tracing as it
+then makes logical sense to view the traces from that starting point.
+
+If you're more likely to view your traces as starting at the lambda function
+(i.e. you do **not** have any tracing prior to the SQS queue) then your mileage may vary with this approach.
+
+We are also here working outside the scope of what is expected by the aws-xray-sdk.
+We are pretending to be AWS Lambda when we're initiating a trace, we're using undocumented fields to
+pretend to be AWS Lambda, and to allow the correlation of the SQS message and the Lambda Inovcation (edge creation).
