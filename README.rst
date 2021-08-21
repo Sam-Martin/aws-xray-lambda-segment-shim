@@ -34,7 +34,6 @@ Usage
 
 
     def lambda_handler(event, context):
-        print(json.dumps(event, default=str))
         for i, record in enumerate(event["Records"]):
             recorder = SQSTriggeredXrayRecorder(
                 record=record,
