@@ -12,7 +12,7 @@ with open(path.join(this_directory, "README.rst"), encoding="utf-8") as f:
 setup(
     version="0.18.0",
     python_requires=">=3.6.0",
-    name="cloudwanderer",
+    name="aws_xray_sqs_lambda_segment_shim",
     packages=find_packages(include=["aws_xray_sqs_lambda_segment_shim"]),
     description="An unofficial shim which faciliates the creation of "
     "AWS Xray Segments in Lambda functions triggered by SQS.",
