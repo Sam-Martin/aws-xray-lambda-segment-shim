@@ -1,7 +1,7 @@
 aws-xray-sqs-lambda-segment-shim
 =====================================
 
-.. image: https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/blob/main/images/example.png?raw=true
+.. image:: https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/blob/main/images/example.png?raw=true
 
 It's not currently possibly follow an AWS Xray trace through a Lambda Function triggered by an SQS Queue.
 
