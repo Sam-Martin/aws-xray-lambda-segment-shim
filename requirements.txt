@@ -1,0 +1,5 @@
+pytest
+mypy
+aws_xray_sdk
+aws_lambda_typing
+jmespath

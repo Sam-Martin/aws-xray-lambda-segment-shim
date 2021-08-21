@@ -1,0 +1,7 @@
+__pycache__
+.vscode
+.terraform
+terraform.*
+.terraform*
+terraform/**/*
+xray_daemon*
