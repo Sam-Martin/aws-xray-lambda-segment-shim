@@ -1,6 +1,12 @@
 aws-xray-sqs-lambda-segment-shim
 =====================================
 
+|shield1| |shield2|
+
+.. |shield1|  image:: https://img.shields.io/github/checks-status/sam-martin/aws-xray-sqs-lambda-segment-shim/main?style=flat-square   :alt: GitHub branch checks state
+
+.. |shield2|  image:: https://img.shields.io/pypi/v/aws-xray-sqs-lambda-segment-shim?style=flat-square   :alt: PyPI
+
 .. image:: https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/blob/main/images/example.png?raw=true
 
 It's not currently possibly follow an AWS Xray trace through a Lambda Function triggered by an SQS Queue.
@@ -12,7 +18,7 @@ Installation
 
 .. code-block::
 
-    pip install aws-xray-lambda-segment-shim
+    pip install aws-xray-sqs-lambda-segment-shim
 
 
 Usage
@@ -40,3 +46,28 @@ Usage
 
 ``SQSTriggeredXrayRecorder`` is a child class of ``aws_xray_sdk.AWSXRayRecorder`` so you can use all the methods you would expect
 from following the `aws-xray-sdk documentation <https://github.com/aws/aws-xray-sdk-python/>`__.
+
+
+Caveats
+----------
+
+This approach causes all subsegments created with it to appear only in the trace that was passed in by SQS.
+There will still be a separate Lambda trace that will not contain these subsegments and will not show as
+being triggered by SQS.
+
+This approach is useful if you are using SQS as an intermediary for a process you're already tracing as it
+then makes logical sense to view the traces from that starting point.
+
+If you're more likely to view your traces as starting at the lambda function
+(i.e. you do **not** have any tracing prior to the SQS queue) then your mileage may vary with this approach.
+
+We are also here working outside the scope of what is expected by the aws-xray-sdk.
+We are pretending to be AWS Lambda when we're initiating a trace, we're using undocumented fields to
+pretend to be AWS Lambda, and to allow the correlation of the SQS message and the Lambda Invocation (edge creation).
+
+If this wasn't the only way to pursue a trace through SQS to lambda I would suggest you avoid it! But given the
+complexity involved in automating this from AWS's side, it may be a while before we see native support.
+
+- `Issue on Python SDK <https://github.com/aws/aws-xray-sdk-python/issues/173>`__
+- `Issue on .NET SDK <https://github.com/aws/aws-xray-sdk-dotnet/issues/110>`__
+- `Issue on Node SDK <https://github.com/aws/aws-xray-sdk-node/issues/208>`__
