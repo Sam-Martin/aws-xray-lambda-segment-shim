@@ -29,9 +29,6 @@ jobs:
       - name: Lint with pydocstyle
         run: |
           pydocstyle
-      - name: Test with doctest
-        run: |
-          make doctest
   unit-and-integration-testing:
     runs-on: ubuntu-latest
     strategy:
@@ -48,7 +45,7 @@ jobs:
       - name: Install package & pytest
         run: |
           pip install --upgrade pip
-          pip install . -r requirements-test.txt
+          pip install . -r requirements.txt
       - name: Test with pytest
         run: |
           pytest

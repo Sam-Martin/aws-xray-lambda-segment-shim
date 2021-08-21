@@ -4,3 +4,7 @@ aws_xray_sdk
 aws_lambda_typing
 jmespath
 types-jmespath
+flake8
+flake8-annotations
+pydocstyle
+pydocstyle[toml]

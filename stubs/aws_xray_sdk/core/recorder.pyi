@@ -3,6 +3,7 @@ from typing import Union
 from aws_xray_sdk.core.context import Context
 from aws_xray_sdk.core.emitters.udp_emitter import UDPEmitter
 from aws_xray_sdk.core.models.default_dynamic_naming import DefaultDynamicNaming
+from aws_xray_sdk.core.models.segment import Segment
 from aws_xray_sdk.core.sampling.sampler import DefaultSampler, LocalSampler
 from aws_xray_sdk.core.streaming.default_streaming import DefaultStreaming
 
@@ -25,3 +26,10 @@ class AWSXRayRecorder:
         sampler: Union[LocalSampler, DefaultSampler, None] = None,
         stream_sql=Union[bool, None],
     ): ...
+    def begin_segment(
+        self,
+        name: Union[str, None],
+        traceid: Union[str, None],
+        parent_id: Union[str, None],
+        sampling: Union[bool, None],
+    ) -> Segment: ...
