@@ -1,6 +1,8 @@
 aws-xray-sqs-lambda-segment-shim
 =====================================
 
+.. image:: https://img.shields.io/github/checks-status/sam-martin/aws-xray-sqs-lambda-segment-shim/main?style=flat-square   :alt: GitHub branch checks state
+
 .. image:: https://img.shields.io/pypi/v/aws-xray-sqs-lambda-segment-shim?style=flat-square   :alt: PyPI
 
 .. image:: https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/blob/main/images/example.png?raw=true
