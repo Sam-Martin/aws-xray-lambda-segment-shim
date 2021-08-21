@@ -3,5 +3,5 @@ __pycache__
 .terraform
 terraform.*
 .terraform*
-terraform/**/*
+terraform/*/*
 xray_daemon*
