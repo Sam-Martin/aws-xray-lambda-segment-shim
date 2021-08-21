@@ -2,7 +2,7 @@ import json
 import os
 import sys
 
-sys.path.append(os.path.abspath("./"))
+# sys.path.append(os.path.abspath("./"))
 sys.path.append(os.path.abspath("./terraform"))
 
 from aws_xray_sqs_lambda_segment_shim import SQSTriggeredXrayRecorder
