@@ -1,11 +1,15 @@
 aws-xray-sqs-lambda-segment-shim
 =====================================
 
-`|shield1| <https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/actions/workflows/continuous-integration.yml?query=branch%3Amain+>`__ `|shield2| <https://pypi.org/project/aws-xray-sqs-lambda-segment-shim/>`__
+|shield1| |shield2|
 
-.. |shield1|  .. image:: https://img.shields.io/github/workflow/status/sam-martin/aws-xray-sqs-lambda-segment-shim/Linting%20&%20Testing?style=flat-square   :alt: GitHub Workflow Status
+.. |shield1|  .. image:: https://img.shields.io/github/workflow/status/sam-martin/aws-xray-sqs-lambda-segment-shim/Linting%20&%20Testing?style=flat-square
+    :target: https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/actions/workflows/continuous-integration.yml?query=branch%3Amain+
+    :alt: GitHub Workflow Status
 
-.. |shield2|  image:: https://img.shields.io/pypi/v/aws-xray-sqs-lambda-segment-shim?style=flat-square   :alt: PyPI
+.. |shield2|  image:: https://img.shields.io/pypi/v/aws-xray-sqs-lambda-segment-shim?style=flat-square
+    :target: https://pypi.org/project/aws-xray-sqs-lambda-segment-shim/
+    :alt: PyPI
 
 .. image:: https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/blob/main/images/example.png?raw=true
 
