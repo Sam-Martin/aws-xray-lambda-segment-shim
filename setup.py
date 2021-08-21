@@ -10,7 +10,7 @@ with open(path.join(this_directory, "README.rst"), encoding="utf-8") as f:
     long_description = re.sub(r"..\s*doctest\s*::", ".. code-block ::", f.read())
 
 setup(
-    version="0.2.0",
+    version="0.3.0",
     python_requires=">=3.6.0",
     name="aws_xray_sqs_lambda_segment_shim",
     packages=find_packages(include=["aws_xray_sqs_lambda_segment_shim"]),
