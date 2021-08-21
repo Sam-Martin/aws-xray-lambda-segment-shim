@@ -12,7 +12,7 @@ Installation
 
 .. code-block::
 
-    pip install aws-xray-lambda-segment-shim
+    pip install aws-xray-sqs-lambda-segment-shim
 
 
 Usage
