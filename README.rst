@@ -58,3 +58,6 @@ If you're more likely to view your traces as starting at the lambda function
 We are also here working outside the scope of what is expected by the aws-xray-sdk.
 We are pretending to be AWS Lambda when we're initiating a trace, we're using undocumented fields to
 pretend to be AWS Lambda, and to allow the correlation of the SQS message and the Lambda Inovcation (edge creation).
+
+If this wasn't the only way to pursue a trace through SQS to lambda I would suggest you avoid it! But given the
+complexity involved in automating this from AWS's side, it may be a while before we see native support.
