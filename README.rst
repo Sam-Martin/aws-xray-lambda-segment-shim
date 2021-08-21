@@ -62,6 +62,6 @@ pretend to be AWS Lambda, and to allow the correlation of the SQS message and th
 If this wasn't the only way to pursue a trace through SQS to lambda I would suggest you avoid it! But given the
 complexity involved in automating this from AWS's side, it may be a while before we see native support.
 
- - `Issue on Python SDK <https://github.com/aws/aws-xray-sdk-python/issues/173>`__
- - `Issue on .NET SDK <https://github.com/aws/aws-xray-sdk-dotnet/issues/110>`__
- - `Issue on Node SDK <https://github.com/aws/aws-xray-sdk-node/issues/208>`__
+- `Issue on Python SDK <https://github.com/aws/aws-xray-sdk-python/issues/173>`__
+- `Issue on .NET SDK <https://github.com/aws/aws-xray-sdk-dotnet/issues/110>`__
+- `Issue on Node SDK <https://github.com/aws/aws-xray-sdk-node/issues/208>`__
