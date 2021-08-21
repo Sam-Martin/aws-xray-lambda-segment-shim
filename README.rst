@@ -3,7 +3,7 @@ aws-xray-sqs-lambda-segment-shim
 
 |shield1| |shield2|
 
-.. |shield1|  .. image:: https://img.shields.io/github/workflow/status/sam-martin/aws-xray-sqs-lambda-segment-shim/Linting%20&%20Testing?style=flat-square
+.. |shield1| image:: https://img.shields.io/github/workflow/status/sam-martin/aws-xray-sqs-lambda-segment-shim/Linting%20&%20Testing?style=flat-square
     :target: https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/actions/workflows/continuous-integration.yml?query=branch%3Amain+
     :alt: GitHub Workflow Status
 
