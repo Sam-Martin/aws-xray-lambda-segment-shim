@@ -21,4 +21,3 @@ def lambda_handler(event, context):
                     "I'm triggered by an SQS Record and using trace id ",
                     subsegment.trace_id,
                 )
-            recorder.end_segment()

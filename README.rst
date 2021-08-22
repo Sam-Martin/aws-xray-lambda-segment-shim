@@ -46,7 +46,7 @@ Usage
                         "I'm triggered by an SQS Record and using trace id ",
                         subsegment.trace_id,
                     )
-                recorder.end_segment()
+
 
 ``SQSTriggeredXrayRecorder`` is a child class of ``aws_xray_sdk.AWSXRayRecorder`` so you can use all the methods you would expect
 from following the `aws-xray-sdk documentation <https://github.com/aws/aws-xray-sdk-python/>`__.
