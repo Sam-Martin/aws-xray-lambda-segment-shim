@@ -8,4 +8,4 @@ testpaths = [
 
 [tool.mypy]
 mypy_path = "./stubs"
-files = "aws_xray_sqs_lambda_segment_shim/"
+files = "aws_xray_lambda_segment_shim/"

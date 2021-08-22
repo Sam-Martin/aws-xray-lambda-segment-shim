@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_for_lambda" {
-  name               = "aws-xray-sqs-lambda-segment-shim"
+  name               = "aws-xray-lambda-segment-shim"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -27,8 +27,8 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
 }
 
 resource "aws_iam_policy" "sqs_read_policy" {
-  name        = "aws-xray-sqs-lambda-segment-shim-sqs-read"
-  description = "Read SQS for aws-xray-sqs-lambda-segment-shim"
+  name        = "aws-xray-lambda-segment-shim-read"
+  description = "Read SQS for aws-xray-lambda-segment-shim"
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.

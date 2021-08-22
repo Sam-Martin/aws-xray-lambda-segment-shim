@@ -1,5 +1,5 @@
 
-TF_DATA_DIR=/tmp/.terraform-aws-xray-sqs-lambda-segment-shim
+TF_DATA_DIR=/tmp/.terraform-aws-xray-lambda-segment-shim
 XRAY_DAEMON_URL=https://s3.us-east-2.amazonaws.com/aws-xray-assets.us-east-2/xray-daemon/aws-xray-daemon-macos-3.x.zip
 
 terraform-init:
@@ -30,7 +30,7 @@ local-test:
 	mypy
 	pydocstyle
 	flake8
-	isort aws_xray_sqs_lambda_segment_shim tests terraform/*.py
+	isort aws_xray_lambda_segment_shim tests terraform/*.py
 
 
 # You can set these variables from the command line, and also

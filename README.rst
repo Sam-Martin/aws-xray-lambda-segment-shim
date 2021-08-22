@@ -1,28 +1,28 @@
-aws-xray-sqs-lambda-segment-shim
+aws-xray-lambda-segment-shim
 =====================================
 
 |shield1| |shield2|
 
-.. |shield1| image:: https://img.shields.io/github/workflow/status/sam-martin/aws-xray-sqs-lambda-segment-shim/Linting%20&%20Testing?style=flat-square
-    :target: https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/actions/workflows/continuous-integration.yml?query=branch%3Amain+
+.. |shield1| image:: https://img.shields.io/github/workflow/status/sam-martin/aws-xray-lambda-segment-shim/Linting%20&%20Testing?style=flat-square
+    :target: https://github.com/Sam-Martin/aws-xray-lambda-segment-shim/actions/workflows/continuous-integration.yml?query=branch%3Amain+
     :alt: GitHub Workflow Status
 
-.. |shield2|  image:: https://img.shields.io/pypi/v/aws-xray-sqs-lambda-segment-shim?style=flat-square
-    :target: https://pypi.org/project/aws-xray-sqs-lambda-segment-shim/
+.. |shield2|  image:: https://img.shields.io/pypi/v/aws-xray-lambda-segment-shim?style=flat-square
+    :target: https://pypi.org/project/aws-xray-lambda-segment-shim/
     :alt: PyPI
 
-.. image:: https://github.com/Sam-Martin/aws-xray-sqs-lambda-segment-shim/blob/main/images/example.png?raw=true
+.. image:: https://github.com/Sam-Martin/aws-xray-lambda-segment-shim/blob/main/images/example.png?raw=true
 
 It's not currently possibly follow an AWS Xray trace through a Lambda Function triggered by an SQS Queue.
 
-Unless you use ``aws-xray-sqs-lambda-segment-shim``!
+Unless you use ``aws-xray-lambda-segment-shim``!
 
 Installation
 ----------------
 
 .. code-block::
 
-    pip install aws-xray-sqs-lambda-segment-shim
+    pip install aws-xray-lambda-segment-shim
 
 
 Usage
@@ -30,7 +30,7 @@ Usage
 
 .. doctest::
 
-    from aws_xray_sqs_lambda_segment_shim import get_sqs_triggered_recorder
+    from aws_xray_lambda_segment_shim import get_sqs_triggered_recorder
 
 
     def lambda_handler(event, context):
@@ -48,7 +48,7 @@ Usage
                     )
 
 
-``SQSTriggeredXrayRecorder`` is a child class of ``aws_xray_sdk.AWSXRayRecorder`` so you can use all the methods you would expect
+``TriggeredXrayRecorder`` is a child class of ``aws_xray_sdk.AWSXRayRecorder`` so you can use all the methods you would expect
 from following the `aws-xray-sdk documentation <https://github.com/aws/aws-xray-sdk-python/>`__.
 
 

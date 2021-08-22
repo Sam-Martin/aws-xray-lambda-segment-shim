@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.abspath("./"))
 sys.path.append(os.path.abspath("./terraform"))
 
-from aws_xray_sqs_lambda_segment_shim import get_sqs_triggered_recorder
+from aws_xray_lambda_segment_shim import get_sqs_triggered_recorder
 
 
 def lambda_handler(event, context):

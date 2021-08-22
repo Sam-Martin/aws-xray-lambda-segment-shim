@@ -1,10 +1,7 @@
 import pytest
 
-from aws_xray_sqs_lambda_segment_shim import get_sqs_triggered_recorder
-from aws_xray_sqs_lambda_segment_shim.exceptions import (
-    InvalidMessageID,
-    InvalidTraceHeader,
-)
+from aws_xray_lambda_segment_shim import get_sqs_triggered_recorder
+from aws_xray_lambda_segment_shim.exceptions import InvalidMessageID, InvalidTraceHeader
 
 
 def sqs_record():

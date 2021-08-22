@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
-project = "aws-xray-sqs-lambda-segment-shim "
+project = "aws-xray-lambda-segment-shim "
 copyright = "2021, Sam Martin"
 author = "Sam Martin"
 
