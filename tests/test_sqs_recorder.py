@@ -1,4 +1,5 @@
 import pytest
+from aws_xray_sdk.core.models.subsegment import Subsegment
 
 from aws_xray_sqs_lambda_segment_shim import SQSTriggeredXrayRecorder
 from aws_xray_sqs_lambda_segment_shim.exceptions import ImmutableSegmentError
@@ -54,3 +55,13 @@ def test_begin_segment(recorder):
 def test_in_segment(recorder):
     with pytest.raises(ImmutableSegmentError):
         recorder.in_segment(name="", traceid="", parent_id="", sampling=False)
+
+
+def test_begin_subsegment(recorder):
+    subsegment = recorder.begin_subsegment("Test")
+    assert isinstance(subsegment, Subsegment)
+
+
+def test_in_subsegment(recorder):
+    with recorder.in_subsegment("Test") as subsegment:
+        assert isinstance(subsegment, Subsegment)
