@@ -9,7 +9,7 @@ from .recorder import SQSTriggeredXrayRecorder, TriggeredXrayRecorder
 if TYPE_CHECKING:
     from aws_lambda_typing.events.sqs import SQSMessage
 else:
-    SQSMessage = {}
+    SQSMessage = dict
 
 
 __all__ = ["SQSTriggeredXrayRecorder", "TriggeredXrayRecorder", "exceptions"]
