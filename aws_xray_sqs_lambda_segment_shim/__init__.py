@@ -27,6 +27,7 @@ def get_sqs_triggered_recorder(
     if not trace_header_str:
         raise InvalidTraceHeader("No trace header found in SQS record")
     trace_header = TraceHeader.from_header_str(trace_header_str)
+
     message_id = record.get("messageId")
     if not message_id:
         raise InvalidMessageID("No message id found in SQS Record")

@@ -41,10 +41,13 @@ class TriggeredXrayRecorder(AWSXRayRecorder):
         self._setup_triggered_recorder()
 
     def _setup_triggered_recorder(self) -> None:
-        """Ensure we have a clean Context and not a LambdaContext."""
+        """Ensure we have a clean Context and not a LambdaContext.
+
+        We also here set the aws metadata which get deepcopied into
+        any newly created segment by the parent class.
+        """
         self.configure(context=Context())
 
-        # Set recorder aws data
         self._aws_metadata = {
             **{
                 "request_id": self.request_id,
@@ -71,7 +74,7 @@ class TriggeredXrayRecorder(AWSXRayRecorder):
         return segment
 
     def _setup_triggered_segment(self) -> Segment:
-        # Setup the base segment
+        """Create the base segment."""
         segment = super().begin_segment(
             name=self.lambda_arn,
             traceid=self.trace_header.root,
@@ -82,7 +85,7 @@ class TriggeredXrayRecorder(AWSXRayRecorder):
         return segment
 
     def _setup_triggered_xray_environment(self) -> None:
-        # Ensure boto3 and other patched libraries get instrumented with the correct trace id.
+        """Ensure boto3 and other patched libraries get instrumented with the correct trace id."""
         os.environ["_X_AMZN_TRACE_ID"] = self.trace_header.to_header_str()
 
     def in_segment(self) -> TriggeredSegmentContextManager:
