@@ -1,5 +1,7 @@
 from typing import Union
 
-class Segment:
+from .entity import Entity
+
+class Segment(Entity):
     origin: Union[None, str]
     id: Union[None, str]

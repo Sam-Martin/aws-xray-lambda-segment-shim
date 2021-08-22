@@ -30,22 +30,23 @@ Usage
 
 .. doctest::
 
-    from aws_xray_sqs_lambda_segment_shim import SQSTriggeredXrayRecorder
+    from aws_xray_sqs_lambda_segment_shim import get_sqs_triggered_recorder
 
 
     def lambda_handler(event, context):
         for i, record in enumerate(event["Records"]):
-            recorder = SQSTriggeredXrayRecorder(
+            recorder = get_sqs_triggered_recorder(
                 record=record,
                 lambda_request_id=context.aws_request_id,
                 lambda_arn=context.invoked_function_arn,
             )
-            with recorder.in_subsegment(f"SQS Record {i}") as subsegment:
-                print(
-                    "I'm triggered by an SQS Record and using trace id ",
-                    subsegment.trace_id,
-                )
-            recorder.end_segment()
+            with recorder.in_segment():
+                with recorder.in_subsegment(f"SQS Record {i}") as subsegment:
+                    print(
+                        "I'm triggered by an SQS Record and using trace id ",
+                        subsegment.trace_id,
+                    )
+
 
 ``SQSTriggeredXrayRecorder`` is a child class of ``aws_xray_sdk.AWSXRayRecorder`` so you can use all the methods you would expect
 from following the `aws-xray-sdk documentation <https://github.com/aws/aws-xray-sdk-python/>`__.
@@ -74,3 +75,34 @@ complexity involved in automating this from AWS's side, it may be a while before
 - `Issue on Python SDK <https://github.com/aws/aws-xray-sdk-python/issues/173>`__
 - `Issue on .NET SDK <https://github.com/aws/aws-xray-sdk-dotnet/issues/110>`__
 - `Issue on Node SDK <https://github.com/aws/aws-xray-sdk-node/issues/208>`__
+
+Testing
+---------
+
+You can run the python tests with:
+
+.. code-block::
+
+    pip install -r requirements.txt
+    make local-test
+
+
+Terraform Tests
+""""""""""""""""""
+
+You can run the terraform tests with:
+
+.. code-block::
+
+    $ make install-xray-daemon-mac
+    $ make run-xray-daemon-mac
+
+Then in a new terminal run:
+
+.. code-block::
+
+    $ make terraform-init
+    $ make terraform-apply
+    $ make terraform-send-message
+
+Once that's complete you can click on the xray URL provided at the end of the test to observe the trace is correct.
