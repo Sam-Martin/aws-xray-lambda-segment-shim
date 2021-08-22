@@ -3,11 +3,16 @@ TF_DATA_DIR=/tmp/.terraform-aws-xray-sqs-lambda-segment-shim
 XRAY_DAEMON_URL=https://s3.us-east-2.amazonaws.com/aws-xray-assets.us-east-2/xray-daemon/aws-xray-daemon-macos-3.x.zip
 
 terraform-init:
+	mkdir -p ${TF_DATA_DIR}
 	cd terraform && pip install aws-xray-sdk --target .
+	rm -rf terraform/boto3 terraform/botocore
 	cd terraform && TF_DATA_DIR=${TF_DATA_DIR} terraform init
 
 terraform-apply:
 	cd terraform && TF_DATA_DIR=${TF_DATA_DIR} terraform apply
+
+terraform-destroy:
+	cd terraform && TF_DATA_DIR=${TF_DATA_DIR} terraform destroy
 
 terraform-send-message:
 	QUEUE_URL=$$(cd terraform && terraform output --raw sqs_queue_url) && \
@@ -25,3 +30,4 @@ local-test:
 	mypy
 	pydocstyle
 	flake8
+	isort aws_xray_sqs_lambda_segment_shim tests terraform/*.py

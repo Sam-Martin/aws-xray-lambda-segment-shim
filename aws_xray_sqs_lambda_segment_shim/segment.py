@@ -11,21 +11,21 @@ from types import TracebackType
 
 
 class TriggeredSegmentContextManager:
-    """
-    Wrapper for segment and recorder to provide segment context manager.
-    """
+    """Wrapper for segment and recorder to provide segment context manager."""
 
     def __init__(self, recorder: TriggeredXrayRecorder) -> None:
         self.recorder = recorder
         self.segment: Optional[Segment] = None
 
     def __enter__(self) -> Segment:
+        """Begin the segment when we enter the context."""
         self.segment = self.recorder.begin_segment()
         return self.segment
 
     def __exit__(
         self, exc_type: Type, exc_val: Exception, exc_tb: TracebackType
     ) -> None:
+        """End the segment when we exit the context."""
         if self.segment is None:
             return
 
