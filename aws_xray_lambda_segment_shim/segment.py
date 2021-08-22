@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING, Optional, Type
 from aws_xray_sdk.core.models.segment import Segment
 
 if TYPE_CHECKING:
-    from aws_xray_lambda_segment_shim.recorder import TriggeredXrayRecorder
+    from .recorder import TriggeredXrayRecorder
 else:
     TriggeredXrayRecorder = object
 import traceback
