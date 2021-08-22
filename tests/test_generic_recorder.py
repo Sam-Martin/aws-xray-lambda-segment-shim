@@ -3,7 +3,7 @@ from aws_xray_sdk.core.exceptions.exceptions import SegmentNotFoundException
 from aws_xray_sdk.core.models.subsegment import Subsegment
 from aws_xray_sdk.core.models.trace_header import TraceHeader
 
-from aws_xray_sqs_lambda_segment_shim import TriggeredXrayRecorder
+from aws_xray_lambda_segment_shim import TriggeredXrayRecorder
 
 
 @pytest.fixture(autouse=True)

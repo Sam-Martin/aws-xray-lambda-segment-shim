@@ -11,7 +11,7 @@ data "archive_file" "lambda_zip" {
 resource "aws_lambda_function" "test_lambda" {
   filename         = "/tmp/lambda_zip.zip"
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
-  function_name    = "aws_xray_sqs_lambda_segment_shim"
+  function_name    = "aws_xray_lambda_segment_shim"
   role             = aws_iam_role.iam_for_lambda.arn
   handler          = "terraform/handler.lambda_handler"
   runtime          = "python3.9"

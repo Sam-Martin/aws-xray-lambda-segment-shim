@@ -4,7 +4,7 @@ import jmespath
 from aws_xray_sdk.core.models.trace_header import TraceHeader
 
 from .exceptions import InvalidMessageID, InvalidTraceHeader
-from .recorder import SQSTriggeredXrayRecorder, TriggeredXrayRecorder
+from .recorder import TriggeredXrayRecorder
 
 if TYPE_CHECKING:
     from aws_lambda_typing.events.sqs import SQSMessage
@@ -12,7 +12,7 @@ else:
     SQSMessage = dict
 
 
-__all__ = ["SQSTriggeredXrayRecorder", "TriggeredXrayRecorder", "exceptions"]
+__all__ = ["TriggeredXrayRecorder", "exceptions"]
 
 
 def get_sqs_triggered_recorder(
