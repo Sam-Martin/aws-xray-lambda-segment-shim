@@ -5,3 +5,4 @@ terraform.*
 .terraform*
 terraform/*/*
 xray_daemon*
+doc_build

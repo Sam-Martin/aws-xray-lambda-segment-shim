@@ -20,7 +20,26 @@ logger = logging.getLogger(__name__)
 
 
 class TriggeredXrayRecorder(AWSXRayRecorder):
-    """Provides setup defaults to allow trace continuation from any existing trace."""
+    """Provides setup defaults to allow trace continuation from any existing trace.
+
+    Example:
+        >>> from aws_xray_sqs_lambda_segment_shim import TriggeredXrayRecorder
+        >>> from aws_xray_sdk.core.models.trace_header import TraceHeader
+        >>> recorder = TriggeredXrayRecorder(
+        ...     trace_header=TraceHeader(
+        ...         root="1-5759e988-bd862e3fe1be46a994272793",
+        ...         parent="3995c3f42cd8ad8",
+        ...         sampled=1,
+        ...     ),
+        ...     trigger_metadata={"message_id": "059f36b4-87a3-44ab-83d2-661975830a7d"},
+        ...     lambda_request_id="test_request_id",
+        ...     lambda_arn="arn:aws:lambda:us-west-2:123456789012:function:my-function",
+        ...     region="eu-west-1",
+        ... )
+        >>> with recorder.in_segment() as segment:
+        ...     segment.trace_id
+        '1-5759e988-bd862e3fe1be46a994272793'
+    """
 
     def __init__(
         self,
