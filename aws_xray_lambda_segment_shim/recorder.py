@@ -82,7 +82,7 @@ class TriggeredXrayRecorder(AWSXRayRecorder):
             )
         segment = self._setup_triggered_segment()
         if self.setup_environment:
-            self._setup_triggered_xray_environment()
+            self._setup_triggered_xray_environment(segment)
         return segment
 
     def _setup_triggered_segment(self) -> Segment:
@@ -96,9 +96,14 @@ class TriggeredXrayRecorder(AWSXRayRecorder):
         segment.origin = "AWS::Lambda::Function"
         return segment
 
-    def _setup_triggered_xray_environment(self) -> None:
+    def _setup_triggered_xray_environment(self, segment: Segment) -> None:
         """Ensure boto3 and other patched libraries get instrumented with the correct trace id."""
-        os.environ["_X_AMZN_TRACE_ID"] = self.trace_header.to_header_str()
+        segment_trace_header = TraceHeader(
+            root=self.trace_header.root,
+            parent=segment.id,
+            sampled=self.trace_header.sampled,
+        )
+        os.environ["_X_AMZN_TRACE_ID"] = segment_trace_header.to_header_str()
 
     def in_segment(self) -> TriggeredSegmentContextManager:
         """Use as a context manager to autoclose the segment once left."""

@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from aws_xray_sdk.core.exceptions.exceptions import SegmentNotFoundException
 from aws_xray_sdk.core.models.subsegment import Subsegment
@@ -45,6 +47,7 @@ def test_in_segment(recorder):
             "region": "eu-west-1",
             "request_id": "test_request_id",
         }
+        assert segment.id in os.environ["_X_AMZN_TRACE_ID"]
     with pytest.raises(SegmentNotFoundException):
         recorder.current_segment()
 
