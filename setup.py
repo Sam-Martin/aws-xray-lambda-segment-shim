@@ -10,12 +10,12 @@ with open(path.join(this_directory, "README.rst"), encoding="utf-8") as f:
     long_description = re.sub(r"..\s*doctest\s*::", ".. code-block ::", f.read())
 
 setup(
-    version="0.5.1",
+    version="0.5.2",
     python_requires=">=3.6.0",
     name="aws_xray_lambda_segment_shim",
     packages=find_packages(include=["aws_xray_lambda_segment_shim"]),
-    description="An unofficial shim which faciliates the creation of "
-    "AWS Xray Segments in Lambda functions triggered by unsupported means.",
+    description="A shim which faciliates the AWS X-Ray tracing of"
+    " Lambda Functions invoked by triggers which don't have native X-Ray support.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
     author="Sam Martin",

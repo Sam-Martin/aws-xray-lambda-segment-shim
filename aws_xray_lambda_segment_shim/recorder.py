@@ -105,6 +105,6 @@ class TriggeredXrayRecorder(AWSXRayRecorder):
         )
         os.environ["_X_AMZN_TRACE_ID"] = segment_trace_header.to_header_str()
 
-    def in_segment(self) -> TriggeredSegmentContextManager:
+    def in_segment(self, *args, **kwargs) -> TriggeredSegmentContextManager:
         """Use as a context manager to autoclose the segment once left."""
         return TriggeredSegmentContextManager(self)

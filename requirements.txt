@@ -8,3 +8,6 @@ flake8
 flake8-annotations
 pydocstyle
 pydocstyle[toml]
+types-aws-xray-sdk
+isort
+black
