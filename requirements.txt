@@ -11,3 +11,5 @@ pydocstyle[toml]
 types-aws-xray-sdk
 isort
 black
+sphinx
+sphinx_rtd_theme
