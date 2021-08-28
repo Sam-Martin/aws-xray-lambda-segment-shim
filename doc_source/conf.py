@@ -82,3 +82,20 @@ autodoc_typehints = "description"
 
 
 # -- Doctest
+doctest_global_setup = """
+from unittest.mock import Mock
+MOCK_CONTEXT = Mock(
+    aws_request_id="test-request",
+    invoked_function_arn="arn:aws:lambda:us-west-2:123456789012:function:my-function"
+)
+MOCK_EVENT = {
+    "Records": [
+        {
+            "attributes": {
+                "AWSTraceHeader": "Root=1-5759e988-bd862e3fe1be46a994272793;Parent=3995c3f42cd8ad8;Sampled=1"
+            },
+            "messageId": "059f36b4-87a3-44ab-83d2-661975830a7d",
+        }
+    ]
+}
+"""
